@@ -3,46 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Srey Samnang - Designer & Video Editor</title>
+    <title>Srey Samnang - Creative Designer & Video Editor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         :root {
             --primary: #3498db;
-            --secondary: #2980b9;
-            --dark: #2c3e50;
+            --primary-dark: #2980b9;
+            --secondary: #2c3e50;
             --light: #ecf0f1;
             --accent: #1abc9c;
+            --accent-dark: #16a085;
             --radiant-blue: linear-gradient(135deg, #3498db, #2c3e50);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             background-color: var(--light);
-            color: var(--dark);
+            color: var(--secondary);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
         
-        /* Radiant Blue Background for Hero Section */
-        .hero {
-            background: var(--radiant-blue);
-            color: white;
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
         }
         
-        .hero-text h1, .hero-text p {
-            color: white;
+        p {
+            margin-bottom: 1rem;
+            color: #555;
         }
         
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Buttons */
         .btn {
-            background-color: white;
-            color: var(--primary);
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
         }
         
         .btn-outline {
@@ -54,43 +95,7 @@
         .btn-outline:hover {
             background-color: white;
             color: var(--primary);
-        }
-        
-        /* Snowflake Styles */
-        .snowflake {
-            position: fixed;
-            top: -10px;
-            z-index: 9999;
-            color: #e0f7fa;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear forwards;
-            text-shadow: 0 0 5px rgba(255,255,255,0.5);
-        }
-        
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-        
-        /* Blue accent for skill bars */
-        .skill-progress {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-        
-        /* Blue accent for service cards */
-        .service-card:hover {
-            border-bottom: 3px solid var(--primary);
-        }
-        
-        /* Rest of your existing CSS remains the same */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
+            transform: translateY(-3px);
         }
         
         /* Header & Navigation */
@@ -100,6 +105,11 @@
             position: fixed;
             width: 100%;
             z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
         
         nav {
@@ -110,13 +120,16 @@
         }
         
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             color: var(--primary);
+            display: flex;
+            align-items: center;
         }
         
         .logo span {
             color: var(--accent);
+            margin-left: 5px;
         }
         
         .nav-links {
@@ -126,37 +139,66 @@
         
         .nav-links li {
             margin-left: 30px;
+            position: relative;
         }
         
         .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            color: var(--secondary);
+            position: relative;
+            padding: 5px 0;
         }
         
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         .menu-toggle {
             display: none;
             cursor: pointer;
             font-size: 24px;
+            color: var(--secondary);
         }
         
         /* Hero Section */
         .hero {
+            background: var(--radiant-blue);
+            color: white;
             height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjAzKSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
         }
         
         .hero-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
+            z-index: 1;
         }
         
         .hero-text {
@@ -165,53 +207,62 @@
         }
         
         .hero-text h1 {
-            font-size: 48px;
+            font-size: 52px;
             margin-bottom: 20px;
+            line-height: 1.2;
         }
         
         .hero-text h1 span {
             color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-text h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: rgba(26, 188, 156, 0.3);
+            z-index: -1;
         }
         
         .hero-text p {
             font-size: 18px;
             margin-bottom: 30px;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
         }
         
         .hero-image {
             flex: 1;
             text-align: center;
+            position: relative;
         }
         
         .hero-image img {
             max-width: 100%;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 5px solid rgba(255,255,255,0.1);
+            transition: var(--transition);
         }
         
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
+        .hero-image:hover img {
+            transform: scale(1.02);
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
         }
         
-        .btn-outline {
-            margin-left: 15px;
-        }
-        
-        /* About Section */
+        /* Section Styling */
         .section {
             padding: 100px 0;
+            position: relative;
         }
         
         .section-title {
@@ -221,7 +272,7 @@
         
         .section-title h2 {
             font-size: 36px;
-            color: var(--dark);
+            color: var(--secondary);
             position: relative;
             display: inline-block;
             padding-bottom: 15px;
@@ -236,8 +287,10 @@
             width: 80px;
             height: 3px;
             background-color: var(--primary);
+            border-radius: 3px;
         }
         
+        /* About Section */
         .about-content {
             display: flex;
             align-items: center;
@@ -246,12 +299,19 @@
         
         .about-image {
             flex: 1;
+            position: relative;
         }
         
         .about-image img {
             width: 100%;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .about-text {
@@ -261,12 +321,7 @@
         .about-text h3 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .about-text p {
-            margin-bottom: 30px;
-            color: #555;
+            color: var(--secondary);
         }
         
         .skills {
@@ -283,9 +338,13 @@
             margin-bottom: 10px;
         }
         
+        .skill-name span {
+            font-weight: 600;
+        }
+        
         .skill-bar {
             height: 10px;
-            background-color: #ddd;
+            background-color: #e0e0e0;
             border-radius: 5px;
             overflow: hidden;
         }
@@ -294,6 +353,8 @@
             height: 100%;
             border-radius: 5px;
             transition: width 1s ease-in-out;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0;
         }
         
         /* Portfolio Section */
@@ -305,22 +366,25 @@
             display: flex;
             justify-content: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .filter-btn {
             background: none;
             border: none;
             padding: 8px 20px;
-            margin: 0 10px;
             cursor: pointer;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             color: #555;
-            transition: all 0.3s;
+            transition: var(--transition);
+            border-radius: 30px;
         }
         
         .filter-btn.active, .filter-btn:hover {
-            color: var(--primary);
+            color: white;
+            background-color: var(--primary);
         }
         
         .portfolio-grid {
@@ -333,18 +397,20 @@
             position: relative;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
         
         .portfolio-item:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
         .portfolio-image {
             width: 100%;
             height: 250px;
             object-fit: cover;
+            display: block;
         }
         
         .portfolio-overlay {
@@ -353,13 +419,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(52, 152, 219, 0.9);
+            background: rgba(52, 152, 219, 0.95);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: var(--transition);
+            padding: 20px;
+            text-align: center;
         }
         
         .portfolio-item:hover .portfolio-overlay {
@@ -373,21 +441,55 @@
         }
         
         .portfolio-overlay p {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.9);
             margin-bottom: 20px;
-            text-align: center;
-            padding: 0 20px;
         }
         
-        .portfolio-overlay a {
+        .portfolio-links {
+            display: flex;
+        }
+        
+        .portfolio-links a {
             color: white;
             font-size: 20px;
             margin: 0 10px;
-            transition: transform 0.3s;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255,255,255,0.2);
+            transition: var(--transition);
         }
         
-        .portfolio-overlay a:hover {
+        .portfolio-links a:hover {
+            background-color: white;
+            color: var(--primary);
             transform: translateY(-3px);
+        }
+        
+        /* More Projects CTA */
+        .more-projects {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .more-projects h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .more-projects p {
+            margin-bottom: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* Services Section */
@@ -399,31 +501,36 @@
         
         .service-card {
             background-color: white;
-            padding: 30px;
+            padding: 40px 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             text-align: center;
+            border-bottom: 3px solid transparent;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-bottom-color: var(--primary);
         }
         
         .service-icon {
             font-size: 50px;
             color: var(--primary);
             margin-bottom: 20px;
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: var(--accent);
         }
         
         .service-card h3 {
             font-size: 22px;
             margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .service-card p {
-            color: #555;
+            color: var(--secondary);
         }
         
         /* Contact Section */
@@ -443,7 +550,7 @@
         .contact-info h3 {
             font-size: 24px;
             margin-bottom: 20px;
-            color: var(--dark);
+            color: var(--secondary);
         }
         
         .contact-details {
@@ -453,12 +560,22 @@
         .contact-item {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .contact-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background-color: var(--primary);
             color: white;
             border-radius: 50%;
@@ -466,12 +583,20 @@
             align-items: center;
             justify-content: center;
             margin-right: 15px;
+            font-size: 20px;
+            flex-shrink: 0;
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover .contact-icon {
+            background-color: var(--accent);
+            transform: rotate(15deg);
         }
         
         .contact-text h4 {
             font-size: 18px;
             margin-bottom: 5px;
-            color: var(--dark);
+            color: var(--secondary);
         }
         
         .contact-text p, .contact-text a {
@@ -486,32 +611,33 @@
         .social-links {
             display: flex;
             margin-top: 20px;
+            gap: 15px;
         }
         
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background-color: var(--primary);
             color: white;
             border-radius: 50%;
-            margin-right: 15px;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-size: 20px;
         }
         
         .social-links a:hover {
             background-color: var(--accent);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
         }
         
         .contact-form {
             flex: 1;
             background-color: white;
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
         }
         
         .form-group {
@@ -520,9 +646,9 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            color: var(--dark);
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--secondary);
         }
         
         .form-control {
@@ -531,12 +657,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
-            transition: border-color 0.3s;
+            transition: var(--transition);
         }
         
         .form-control:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
         }
         
         textarea.form-control {
@@ -546,38 +673,167 @@
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background-color: var(--secondary);
             color: white;
-            padding: 30px 0;
+            padding: 50px 0 20px;
             text-align: center;
         }
         
         .footer-content p {
             margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
         }
         
         .footer-links {
             display: flex;
             justify-content: center;
             list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .footer-links li {
-            margin: 0 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         
         .footer-links a {
             color: white;
-            text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            font-weight: 500;
         }
         
         .footer-links a:hover {
             color: var(--accent);
         }
         
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 14px;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        /* Snowflake Styles */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            z-index: 9999;
+            color: #e0f7fa;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        /* Modal for More Projects */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .modal-content {
+            background-color: white;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            border-radius: 10px;
+            position: relative;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: #555;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            text-align: center;
+        }
+        
+        .modal-text {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .modal-contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero-text h1 {
+                font-size: 42px;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero-content, .about-content, .contact-content {
                 flex-direction: column;
@@ -590,6 +846,10 @@
             
             .hero-image, .about-image {
                 margin-top: 30px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
             }
         }
         
@@ -604,7 +864,7 @@
                 flex-direction: column;
                 align-items: center;
                 padding: 50px 0;
-                transition: left 0.3s;
+                transition: var(--transition);
             }
             
             .nav-links.active {
@@ -630,23 +890,49 @@
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .modal-content {
+                padding: 30px 20px;
+                margin: 20px auto;
+            }
         }
         
         @media (max-width: 576px) {
-            .btn {
-                display: block;
-                width: 100%;
-                margin-bottom: 15px;
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .btn-outline {
-                margin-left: 0;
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            
+            .section {
+                padding: 70px 0;
             }
             
             .filter-btn {
-                padding: 5px 10px;
-                margin: 0 5px;
+                padding: 6px 15px;
                 font-size: 14px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .social-links {
+                justify-content: center;
             }
         }
     </style>
@@ -655,7 +941,7 @@
     <!-- Snowflakes will be generated here by JavaScript -->
     
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <nav>
                 <div class="logo">Srey<span>Samnang</span></div>
@@ -677,15 +963,15 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text">
+                <div class="hero-text animate__animated animate__fadeInLeft">
                     <h1>Hi, I'm <span>Srey Samnang</span></h1>
                     <p>A creative designer specializing in video editing, UX/UI design, and graphic design. I transform ideas into visually stunning experiences that captivate audiences.</p>
                     <div class="hero-buttons">
-                        <a href="#portfolio" class="btn">View My Work</a>
+                        <a href="#portfolio" class="btn btn-primary">View My Work</a>
                         <a href="#contact" class="btn btn-outline">Hire Me</a>
                     </div>
                 </div>
-                <div class="hero-image">
+                <div class="hero-image animate__animated animate__fadeInRight">
                     <img src="me.png" alt="Srey Samnang">
                 </div>
             </div>
@@ -699,12 +985,12 @@
                 <h2>About Me</h2>
             </div>
             <div class="about-content">
-                <div class="about-image">
+                <div class="about-image animate__animated animate__fadeInLeft">
                     <img src="me1.jpg" alt="Srey Samnang">
                 </div>
-                <div class="about-text">
+                <div class="about-text animate__animated animate__fadeInRight">
                     <h3>Creative Designer & Video Editor</h3>
-                    <p>Hi! I'm Srey Samnang, a multidisciplinary designer with expertise in video editing, graphic design, and UX/UI design. I blend creativity with technical precision to deliver engaging visuals that tell compelling stories. I was a Video Editor at The University of Cambodia. And currently I am a video eddtor at ICT professional training center. (adobe Premiere Pro, Cap Cut, filmora, blender 30%, Photoshop, Canva,...)</p>
+                    <p>Hi! I'm Srey Samnang, a multidisciplinary designer with expertise in video editing, graphic design, and UX/UI design. I blend creativity with technical precision to deliver engaging visuals that tell compelling stories. I was a Video Editor at The University of Cambodia. And currently I am a video editor at ICT professional training center.</p>
                     <p>With a keen eye for detail and a passion for innovation, I help brands and individuals communicate their message effectively through stunning visual content.</p>
                     
                     <div class="skills">
@@ -760,10 +1046,10 @@
             <div class="portfolio-grid">
                 <!-- Video Editing Projects -->
                 <div class="portfolio-item" data-category="video">
-                    <img src="ict.png">
+                    <img src="ict.png" alt="ICT Promotional Video" class="portfolio-image">
                     <div class="portfolio-overlay">
                         <h3>Promotional Video</h3>
-                        <p>A dynamic promotional video created for a tech startup.</p>
+                        <p>A dynamic promotional video created for ICT Professional Training Center.</p>
                         <div class="portfolio-links">
                             <a href="#"><i class="fas fa-play"></i></a>
                             <a href="#"><i class="fas fa-link"></i></a>
@@ -786,7 +1072,7 @@
                 
                 <!-- Graphic Design Projects -->
                 <div class="portfolio-item" data-category="graphic">
-                    <img src="coffee.jpg" >
+                    <img src="coffee.jpg" alt="Coffee Shop Branding" class="portfolio-image">
                     <div class="portfolio-overlay">
                         <h3>Brand Identity</h3>
                         <p>Complete brand identity design for a coffee shop.</p>
@@ -799,7 +1085,7 @@
                 
                 <!-- More projects -->
                 <div class="portfolio-item" data-category="video">
-                    <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1478&q=80" alt="Video Project 2" class="portfolio-image">
+                    <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1478&q=80" alt="Music Video" class="portfolio-image">
                     <div class="portfolio-overlay">
                         <h3>Music Video</h3>
                         <p>Creative editing for an indie band's music video.</p>
@@ -811,7 +1097,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="ui">
-                    <img src="ec.png">
+                    <img src="ec.png" alt="E-commerce Website" class="portfolio-image">
                     <div class="portfolio-overlay">
                         <h3>E-commerce Website</h3>
                         <p>User experience design for an online fashion store.</p>
@@ -823,7 +1109,7 @@
                 </div>
                 
                 <div class="portfolio-item" data-category="graphic">
-                    <img src="poster.jpg">
+                    <img src="poster.jpg" alt="Event Poster" class="portfolio-image">
                     <div class="portfolio-overlay">
                         <h3>Event Poster</h3>
                         <p>Eye-catching poster design for a music festival.</p>
@@ -833,6 +1119,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- More Projects CTA -->
+            <div class="more-projects animate__animated animate__fadeIn">
+                <h3>Want to See More of My Work?</h3>
+                <p>I have additional projects that I'd love to share with you. Contact me to request access to my full portfolio.</p>
+                <button id="showMoreProjects" class="btn btn-primary">Contact to See More Projects</button>
             </div>
         </div>
     </section>
@@ -845,7 +1138,7 @@
             </div>
             
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card animate__animated animate__fadeInUp">
                     <div class="service-icon">
                         <i class="fas fa-video"></i>
                     </div>
@@ -853,7 +1146,7 @@
                     <p>Professional video editing services for commercials, music videos, social media content, and more. I'll transform your raw footage into a polished, engaging story.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                     <div class="service-icon">
                         <i class="fas fa-paint-brush"></i>
                     </div>
@@ -861,7 +1154,7 @@
                     <p>Creative graphic design solutions including logos, branding, posters, and marketing materials that make your brand stand out.</p>
                 </div>
                 
-                <div class="service-card">
+                <div class="service-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
                     <div class="service-icon">
                         <i class="fas fa-laptop-code"></i>
                     </div>
@@ -880,7 +1173,7 @@
             </div>
             
             <div class="contact-content">
-                <div class="contact-info">
+                <div class="contact-info animate__animated animate__fadeInLeft">
                     <h3>Contact Information</h3>
                     
                     <div class="contact-details">
@@ -923,7 +1216,7 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
+                <div class="contact-form animate__animated animate__fadeInRight">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Your Name</label>
@@ -945,7 +1238,7 @@
                             <textarea id="message" class="form-control" required></textarea>
                         </div>
                         
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -956,7 +1249,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2023 Srey Samnang. All Rights Reserved.</p>
+                <p>Let's work together to bring your creative vision to life!</p>
                 <ul class="footer-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
@@ -964,9 +1257,49 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
+                <div class="copyright">
+                    &copy; 2023 Srey Samnang. All Rights Reserved.
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Modal for More Projects -->
+    <div class="modal" id="moreProjectsModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Request Access to Full Portfolio</h2>
+            <p class="modal-text">Please provide your details and I'll send you a link to view my complete portfolio with additional projects.</p>
+            
+            <form class="modal-contact-form" id="portfolioRequestForm">
+                <div class="form-group">
+                    <label for="modal-name">Your Name</label>
+                    <input type="text" id="modal-name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-email">Your Email</label>
+                    <input type="email" id="modal-email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modal-purpose">Purpose of Request</label>
+                    <select id="modal-purpose" class="form-control" required>
+                        <option value="">Select an option</option>
+                        <option value="potential_client">Potential Client</option>
+                        <option value="collaboration">Collaboration Opportunity</option>
+                        <option value="recruitment">Recruitment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Request Portfolio Access</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         // Mobile Menu Toggle
@@ -977,6 +1310,14 @@
             navLinks.classList.toggle('active');
             menuToggle.innerHTML = navLinks.classList.contains('active') ? 
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
         });
         
         // Smooth Scrolling for Navigation Links
@@ -991,13 +1332,27 @@
                     top: targetElement.offsetTop - 80,
                     behavior: 'smooth'
                 });
-                
-                // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                }
             });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
         });
         
         // Portfolio Filter
@@ -1016,8 +1371,10 @@
                 portfolioItems.forEach(item => {
                     if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                         item.style.display = 'block';
+                        item.classList.add('animate__animated', 'animate__fadeIn');
                     } else {
                         item.style.display = 'none';
+                        item.classList.remove('animate__animated', 'animate__fadeIn');
                     }
                 });
             });
@@ -1038,10 +1395,10 @@
         function isElementInViewport(el) {
             const rect = el.getBoundingClientRect();
             return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.left <= (window.innerWidth || document.documentElement.clientWidth) &&
+                rect.bottom >= 0 &&
+                rect.right >= 0
             );
         }
         
@@ -1050,9 +1407,8 @@
             bar.style.width = '0';
         });
         
-        // Animate on scroll
+        // Animate on scroll and load
         window.addEventListener('scroll', animateSkillBars);
-        // Also check on page load
         window.addEventListener('load', animateSkillBars);
         
         // Form Submission
@@ -1071,8 +1427,64 @@
             // For this example, we'll just log it and show an alert
             console.log({ name, email, subject, message });
             
-            alert('Thank you for your message! I will get back to you soon.');
+            // Show success message
+            Swal.fire({
+                icon: 'success',
+                title: 'Message Sent!',
+                text: 'Thank you for your message! I will get back to you soon.',
+                confirmButtonColor: '#3498db'
+            });
+            
             contactForm.reset();
+        });
+        
+        // More Projects Modal
+        const moreProjectsBtn = document.getElementById('showMoreProjects');
+        const moreProjectsModal = document.getElementById('moreProjectsModal');
+        const closeModal = document.querySelector('.close-modal');
+        const portfolioRequestForm = document.getElementById('portfolioRequestForm');
+        
+        moreProjectsBtn.addEventListener('click', () => {
+            moreProjectsModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        });
+        
+        closeModal.addEventListener('click', () => {
+            moreProjectsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === moreProjectsModal) {
+                moreProjectsModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Portfolio Request Form Submission
+        portfolioRequestForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('modal-name').value;
+            const email = document.getElementById('modal-email').value;
+            const purpose = document.getElementById('modal-purpose').value;
+            
+            // Here you would typically send the form data to a server
+            console.log({ name, email, purpose });
+            
+            // Show success message
+            Swal.fire({
+                icon: 'success',
+                title: 'Request Received!',
+                text: 'Thank you for your interest! I will send you the portfolio access link shortly.',
+                confirmButtonColor: '#3498db'
+            });
+            
+            // Close the modal
+            moreProjectsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            portfolioRequestForm.reset();
         });
         
         // Snowflake creation
@@ -1101,7 +1513,10 @@
                     snowflake.style.animationDelay = `${Math.random() * 5}s`;
                     
                     // Random opacity
-                    snowflake.style.opacity = Math.random() * 50 + 50;
+                    snowflake.style.opacity = Math.random() * 0.5 + 0.5;
+                    
+                    // Random rotation
+                    snowflake.style.transform = `rotate(${Math.random() * 360}deg)`;
                     
                     body.appendChild(snowflake);
                     
@@ -1116,6 +1531,26 @@
         // Create snowflakes periodically
         createSnowflakes();
         setInterval(createSnowflakes, 15000);
+        
+        // Initialize animations when elements come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate__animated');
+            
+            elements.forEach(element => {
+                if (isElementInViewport(element)) {
+                    const animation = element.getAttribute('data-animation');
+                    if (animation) {
+                        element.classList.add(animation);
+                    }
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
+    
+    <!-- SweetAlert for beautiful alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
