@@ -259,22 +259,32 @@
             display: none;
         }
         
-        /* Hero Section */
+        /* Hero Section - Updated Layout */
         .hero {
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             position: relative;
             overflow: hidden;
             padding-top: 8rem;
         }
         
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            max-width: 1200px;
+            width: 100%;
             position: relative;
             z-index: 2;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease;
         }
         
         .hero-title {
@@ -282,9 +292,6 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease;
             letter-spacing: -0.05em;
         }
         
@@ -299,21 +306,148 @@
             font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 2.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease 0.2s;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
         }
         
         .hero-buttons {
             display: flex;
-            justify-content: center;
             gap: 1.5rem;
+        }
+        
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             opacity: 0;
             transform: translateY(30px);
-            transition: all 1s ease 0.4s;
+            transition: all 1s ease 0.2s;
+        }
+        
+        .hero-image {
+            width: 100%;
+            max-width: 450px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary-light);
+            border-radius: var(--radius-lg);
+            z-index: -1;
+            transition: var(--transition);
+        }
+        
+        .hero-image:hover::before {
+            top: -15px;
+            left: -15px;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Scroll Button */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+            opacity: 0;
+            transition: all 1s ease 0.8s;
+        }
+        
+        .scroll-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .scroll-button {
+            width: 50px;
+            height: 25px;
+            border-radius: 25px 25px 0 0;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-bottom: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .scroll-button {
+            background: rgba(17, 24, 39, 0.05);
+            border: 1px solid rgba(17, 24, 39, 0.1);
+            border-bottom: none;
+        }
+        
+        .scroll-button::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            top: 100%;
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .scroll-button:hover {
+            transform: translateY(-5px);
+        }
+        
+        .scroll-button:hover::before {
+            top: 0;
+        }
+        
+        .scroll-button i {
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-button:hover i {
+            color: var(--light);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-3px);
+            }
         }
         
         .btn {
@@ -382,7 +516,7 @@
             background: rgba(17, 24, 39, 0.05);
         }
         
-        .hero-image {
+        .hero-bg-image {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -392,7 +526,7 @@
             opacity: 0.1;
         }
         
-        .hero-image img {
+        .hero-bg-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1007,6 +1141,15 @@
         }
         
         @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                text-align: center;
+            }
+            
             .about-content, .contact-content {
                 flex-direction: column;
             }
@@ -1160,7 +1303,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-image">
+        <div class="hero-bg-image">
             <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Creative Background">
         </div>
         
@@ -1169,11 +1312,26 @@
         
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Hi, I'm <span>Srey Samnang</span></h1>
-                <p class="hero-subtitle">Senior Creative Designer & Video Editor specializing in visual storytelling and brand experiences. I transform ideas into captivating visual narratives that engage and inspire audiences.</p>
-                <div class="hero-buttons">
-                    <a href="#portfolio" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Hire Me</a>
+                <div class="hero-text">
+                    <h1 class="hero-title">Hi, I'm <span>Srey Samnang</span></h1>
+                    <p class="hero-subtitle">Senior Creative Designer & Video Editor specializing in visual storytelling and brand experiences. I transform ideas into captivating visual narratives that engage and inspire audiences.</p>
+                    <div class="hero-buttons">
+                        <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Hire Me</a>
+                    </div>
+                </div>
+                
+                <div class="hero-image-container">
+                    <div class="hero-image">
+                        <img src="me1.jpg" alt="Srey Samnang">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scroll-down">
+                <div class="scroll-text">Scroll to see my work</div>
+                <div class="scroll-button" id="scrollButton">
+                    <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
         </div>
@@ -1600,6 +1758,16 @@
             });
         });
         
+        // Scroll Button Functionality
+        const scrollButton = document.getElementById('scrollButton');
+        scrollButton.addEventListener('click', () => {
+            const portfolioSection = document.getElementById('portfolio');
+            window.scrollTo({
+                top: portfolioSection.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        });
+        
         // Scroll Spy for Navigation
         const sections = document.querySelectorAll('section');
         
@@ -1684,7 +1852,7 @@
         
         // Animate Elements on Scroll
         function animateElements() {
-            const elements = document.querySelectorAll('.hero-title, .hero-subtitle, .hero-buttons, .section-header, .about-image, .about-text, .portfolio-filter, .portfolio-grid, .services-grid, .contact-info, .contact-form');
+            const elements = document.querySelectorAll('.hero-text, .hero-image-container, .scroll-down, .section-header, .about-image, .about-text, .portfolio-filter, .portfolio-grid, .services-grid, .contact-info, .contact-form');
             
             elements.forEach(el => {
                 if (isElementInViewport(el)) {
@@ -1713,9 +1881,9 @@
         
         // Initialize elements with hidden state
         function initAnimations() {
-            document.querySelector('.hero-title').style.opacity = '0';
-            document.querySelector('.hero-subtitle').style.opacity = '0';
-            document.querySelector('.hero-buttons').style.opacity = '0';
+            document.querySelector('.hero-text').style.opacity = '0';
+            document.querySelector('.hero-image-container').style.opacity = '0';
+            document.querySelector('.scroll-down').style.opacity = '0';
             
             const animatedElements = document.querySelectorAll('.section-header, .about-image, .about-text, .portfolio-filter, .portfolio-grid, .services-grid, .contact-info, .contact-form');
             animatedElements.forEach(el => {
