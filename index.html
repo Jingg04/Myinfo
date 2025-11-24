@@ -120,7 +120,7 @@
             overflow: hidden;
         }
         
-        /* NEW: Circular Navigation */
+        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -168,118 +168,43 @@
             color: transparent;
         }
         
-        /* NEW: Circular Navigation Layout */
-        .circular-nav {
+        /* Navigation */
+        .nav-links {
             display: flex;
+            gap: 2rem;
             align-items: center;
-            position: relative;
-            height: 120px;
         }
         
-        .profile-circle {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid var(--primary-light);
-            box-shadow: var(--shadow-lg);
-            z-index: 10;
-            transition: var(--transition);
-        }
-        
-        .profile-circle:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-        
-        .profile-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .circular-nav-links {
-            position: relative;
-            display: flex;
-            align-items: center;
-            margin-left: -30px;
-        }
-        
-        .nav-item {
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            transition: var(--transition);
-            cursor: pointer;
-            z-index: 5;
-        }
-        
-        .nav-item a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
+        .nav-links a {
+            color: var(--text-primary);
             text-decoration: none;
-            color: var(--text-primary);
-            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
             transition: var(--transition);
         }
         
-        .nav-item:hover {
-            background: var(--primary-light);
-            transform: scale(1.1);
-            box-shadow: var(--shadow-lg);
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
         }
         
-        .nav-item.active {
-            background: var(--gradient);
-            transform: scale(1.1);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-light);
         }
         
-        .nav-item.active a {
-            color: var(--light);
-        }
-        
-        .nav-item:nth-child(1) { transform: translate(60px, -40px); }
-        .nav-item:nth-child(2) { transform: translate(100px, 0); }
-        .nav-item:nth-child(3) { transform: translate(90px, 50px); }
-        .nav-item:nth-child(4) { transform: translate(50px, 80px); }
-        .nav-item:nth-child(5) { transform: translate(0, 90px); }
-        
-        .nav-item:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: -40px;
-            background: var(--dark);
-            color: var(--text-primary);
-            padding: 5px 10px;
-            border-radius: var(--radius);
-            font-size: 0.8rem;
-            white-space: nowrap;
-            box-shadow: var(--shadow);
-            z-index: 20;
-        }
-        
-        /* Mobile menu toggle */
-        .menu-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
         /* Theme Toggle Button */
         .theme-toggle {
             background: var(--glass);
@@ -314,7 +239,18 @@
             display: none;
         }
         
-        /* Hero Section - Updated Layout */
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Hero Section */
         .hero {
             display: flex;
             align-items: center;
@@ -752,6 +688,70 @@
             background: var(--gradient);
             transition: width 1.5s ease;
             width: 0;
+        }
+        
+        /* Design Tools Section */
+        .tools-section {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="light"] .tools-section {
+            border-top: 1px solid rgba(17, 24, 39, 0.1);
+        }
+        
+        .tools-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.03em;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        [data-theme="light"] .tool-item {
+            background: rgba(17, 24, 39, 0.05);
+            border: 1px solid rgba(17, 24, 39, 0.1);
+        }
+        
+        .tool-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-light);
+        }
+        
+        .tool-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-primary);
         }
         
         /* Portfolio Section */
@@ -1227,7 +1227,7 @@
         }
         
         @media (max-width: 768px) {
-            .circular-nav {
+            .nav-links {
                 display: none;
             }
             
@@ -1299,6 +1299,10 @@
             .theme-toggle {
                 margin-left: 1rem;
             }
+
+            .tools-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
         }
         
         @media (max-width: 576px) {
@@ -1343,6 +1347,10 @@
                 bottom: 1.25rem;
                 right: 1.25rem;
             }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -1361,28 +1369,17 @@
             <nav>
                 <a href="#home" class="logo">Srey<span>Samnang</span></a>
                 
-                <!-- NEW: Circular Navigation -->
-                <div class="circular-nav">
-                    <div class="profile-circle">
-                        <img src="me1.jpg" alt="Srey Samnang">
-                    </div>
-                    <div class="circular-nav-links">
-                        <div class="nav-item" data-tooltip="Home">
-                            <a href="#home"><i class="fas fa-home"></i></a>
-                        </div>
-                        <div class="nav-item" data-tooltip="About">
-                            <a href="#about"><i class="fas fa-user"></i></a>
-                        </div>
-                        <div class="nav-item" data-tooltip="Portfolio">
-                            <a href="#portfolio"><i class="fas fa-briefcase"></i></a>
-                        </div>
-                        <div class="nav-item" data-tooltip="Services">
-                            <a href="#services"><i class="fas fa-cogs"></i></a>
-                        </div>
-                        <div class="nav-item" data-tooltip="Contact">
-                            <a href="#contact"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
+                <!-- Navigation -->
+                <div class="nav-links">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                    <button class="theme-toggle" aria-label="Toggle theme">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun"></i>
+                    </button>
                 </div>
                 
                 <!-- Mobile Navigation -->
@@ -1404,10 +1401,6 @@
                     </div>
                 </div>
                 
-                <button class="theme-toggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                    <i class="fas fa-sun"></i>
-                </button>
                 <button class="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -1437,7 +1430,7 @@
                 
                 <div class="hero-image-container">
                     <div class="hero-image">
-                        <img src="me1.jpg" alt="Srey Samnang">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Srey Samnang">
                     </div>
                 </div>
             </div>
@@ -1461,7 +1454,7 @@
             
             <div class="about-content">
                 <div class="about-image">
-                    <img src="me1.jpg" alt="Srey Samnang">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Srey Samnang">
                 </div>
                 
                 <div class="about-text">
@@ -1509,6 +1502,61 @@
                                 <div class="skill-progress" data-width="88%"></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Design Tools Section -->
+            <div class="tools-section">
+                <h3>Design Tools I Use</h3>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fab fa-adobe"></i>
+                        </div>
+                        <div class="tool-name">Adobe Creative Suite</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="tool-name">Premiere Pro</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-play-circle"></i>
+                        </div>
+                        <div class="tool-name">After Effects</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="tool-name">Photoshop</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="tool-name">Illustrator</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <div class="tool-name">Figma</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="tool-name">InDesign</div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="tool-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="tool-name">Blender</div>
                     </div>
                 </div>
             </div>
@@ -1857,8 +1905,8 @@
             });
         });
         
-        // NEW: Circular Navigation Active State
-        const navItems = document.querySelectorAll('.nav-item');
+        // Navigation Active State
+        const navLinks = document.querySelectorAll('.nav-links a');
         const mobileNavItems = document.querySelectorAll('.mobile-nav-item a');
         
         function setActiveNavItem() {
@@ -1874,15 +1922,14 @@
                 }
             });
             
-            // Update circular nav items
-            navItems.forEach(item => {
-                const link = item.querySelector('a');
+            // Update desktop nav items
+            navLinks.forEach(link => {
                 const href = link.getAttribute('href').substring(1);
                 
                 if (href === current) {
-                    item.classList.add('active');
+                    link.classList.add('active');
                 } else {
-                    item.classList.remove('active');
+                    link.classList.remove('active');
                 }
             });
             
@@ -2047,23 +2094,6 @@
             
             alert('Thank you for your message! I will get back to you soon.');
             contactForm.reset();
-            
-            // You would replace this with actual form submission code
-            // fetch('your-endpoint', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ name, email, subject, message }),
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     alert('Thank you for your message! I will get back to you soon.');
-            //     contactForm.reset();
-            // })
-            // .catch((error) => {
-            //     alert('There was an error sending your message. Please try again later.');
-            // });
         });
         
         // Initialize
