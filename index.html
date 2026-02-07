@@ -639,11 +639,31 @@
             box-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
         }
 
+        .timeline-item.current:before {
+            background: #00cc66;
+            box-shadow: 0 0 15px rgba(0, 204, 102, 0.3);
+            animation: pulseCurrent 2s infinite;
+        }
+
+        @keyframes pulseCurrent {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 204, 102, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(0, 204, 102, 0.5);
+            }
+        }
+
         .timeline-date {
             color: var(--accent-blue);
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 10px;
+        }
+
+        .timeline-item.current .timeline-date {
+            color: #00cc66;
+            font-weight: 700;
         }
 
         .timeline-title {
@@ -661,6 +681,19 @@
         .timeline-description {
             color: var(--text-secondary);
             line-height: 1.7;
+        }
+
+        /* Current Position Badge */
+        .current-badge {
+            display: inline-block;
+            background-color: rgba(0, 204, 102, 0.1);
+            color: #00cc66;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
         }
 
         /* Skills Grid */
@@ -1125,8 +1158,9 @@
 
             <!-- Intro Section -->
             <section class="intro-section section">
-                <h2 class="intro-title">Professional Video Editing & Creative Content Production</h2>
+                <h2 class="intro-title">Professional Video Editor & Creative Content Producer</h2>
                 <p class="intro-description">
+                    Currently working as a Video Editor at KiuQ Company since December 2025. 
                     Skilled in Adobe Creative Suite, CapCut, and multimedia production. 
                     Experienced in promotional video editing, social media management, 
                     and IT support. Let's create compelling visual stories together.
@@ -1151,13 +1185,15 @@
                     Work Experience
                 </h2>
                 <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-date">Jan - July 2025</div>
-                        <h3 class="timeline-title">Video Editor Intern & Videographer</h3>
-                        <div class="timeline-company">The University of Cambodia</div>
+                    <!-- Current Position - KiuQ Company -->
+                    <div class="timeline-item current">
+                        <div class="timeline-date">Dec 2025 - Present <span class="current-badge">Current</span></div>
+                        <h3 class="timeline-title">Video Editor</h3>
+                        <div class="timeline-company">KiuQ Company</div>
                         <p class="timeline-description">
-                            Promotional video editing and content creation for university marketing.
-                            Managed video shoots, editing, and post-production for various campaigns.
+                            Professional video editing and content creation for commercial projects.
+                            Specializing in promotional videos, corporate content, and social media videos.
+                            Working with clients to create compelling visual narratives.
                         </p>
                     </div>
                     
@@ -1168,6 +1204,16 @@
                         <p class="timeline-description">
                             Video editing, photo editing with Adobe Lightroom, and promotional 
                             content management for training center marketing materials.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">Jan - July 2025</div>
+                        <h3 class="timeline-title">Video Editor Intern & Videographer</h3>
+                        <div class="timeline-company">The University of Cambodia</div>
+                        <p class="timeline-description">
+                            Promotional video editing and content creation for university marketing.
+                            Managed video shoots, editing, and post-production for various campaigns.
                         </p>
                     </div>
                     
@@ -1234,6 +1280,24 @@
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3 class="project-title">KiuQ Company Projects</h3>
+                            <p class="project-description">
+                                Commercial video projects for KiuQ Company clients including 
+                                promotional videos, corporate content, and social media campaigns.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Commercial</span>
+                                <span class="project-tag">Promotional</span>
+                                <span class="project-tag">Corporate</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
                             <i class="fas fa-university"></i>
                         </div>
                         <div class="project-content">
@@ -1267,24 +1331,6 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="project-card">
-                        <div class="project-image">
-                            <i class="fas fa-mobile-alt"></i>
-                        </div>
-                        <div class="project-content">
-                            <h3 class="project-title">Android App Development</h3>
-                            <p class="project-description">
-                                Mobile application development projects using Android Studio,
-                                focusing on educational and utility applications.
-                            </p>
-                            <div class="project-tags">
-                                <span class="project-tag">Android Studio</span>
-                                <span class="project-tag">Java</span>
-                                <span class="project-tag">UI/UX</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
@@ -1295,8 +1341,8 @@
         <div class="footer-content">
             <div class="footer-logo">S<span>S</span></div>
             <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 30px;">
-                Creating compelling visual stories through professional video editing 
-                and creative content production.
+                Video Editor at KiuQ Company | Creating compelling visual stories through 
+                professional video editing and creative content production.
             </p>
             <div class="footer-social">
                 <a href="https://facebook.com/ronly1jing" title="Facebook" target="_blank" rel="noopener noreferrer">
@@ -1316,7 +1362,7 @@
                 </a>
             </div>
             <div class="copyright">
-                © 2024 Srey Samnang. Video Editor & Videographer. All Rights Reserved.
+                © 2024 Srey Samnang. Video Editor & Videographer. Currently at KiuQ Company. All Rights Reserved.
             </div>
         </div>
     </footer>
@@ -1439,6 +1485,14 @@
                 el.style.transform = `translateY(${scrolled * speed * 0.1}px)`;
             });
         });
+
+        // Highlight current position badge with animation
+        const currentBadge = document.querySelector('.current-badge');
+        if (currentBadge) {
+            setInterval(() => {
+                currentBadge.style.opacity = currentBadge.style.opacity === '0.7' ? '1' : '0.7';
+            }, 1500);
+        }
     </script>
 </body>
 </html>
