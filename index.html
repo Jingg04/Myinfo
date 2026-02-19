@@ -111,3 +111,1183 @@
             background: conic-gradient(transparent 0deg, var(--gta-green) 10deg, transparent 20deg);
             animation: radarScan 4s linear infinite;
         }
+
+        @keyframes radarScan {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* GTA WANTED LEVEL */
+        .wanted-level {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--gta-black);
+            border: 3px solid var(--gta-yellow);
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 1000;
+            box-shadow: 0 0 15px var(--gta-yellow);
+        }
+
+        .wanted-stars {
+            display: flex;
+            gap: 5px;
+        }
+
+        .wanted-star {
+            color: var(--gta-yellow);
+            font-size: 1.8rem;
+            text-shadow: 0 0 5px var(--gta-yellow);
+        }
+
+        .wanted-text {
+            color: var(--gta-white);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* GTA HEADER */
+        .gta-header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            position: relative;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+        }
+
+        .gta-title {
+            font-size: 5rem;
+            color: var(--gta-yellow);
+            text-shadow: var(--gta-shadow);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding: 0 2rem;
+        }
+
+        .gta-title::before, .gta-title::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gta-red);
+            font-size: 3rem;
+        }
+
+        .gta-title::before {
+            left: 0;
+        }
+
+        .gta-title::after {
+            right: 0;
+        }
+
+        .gta-subtitle {
+            font-size: 2rem;
+            color: var(--gta-green);
+            text-shadow: 0 0 10px var(--gta-green);
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .gta-divider {
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gta-yellow), transparent);
+            margin: 1.5rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gta-divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--gta-white), transparent);
+            animation: gtaShine 3s infinite;
+        }
+
+        @keyframes gtaShine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* GTA CONTAINER */
+        .gta-container {
+            display: flex;
+            width: 100vw;
+            min-height: 70vh;
+            padding: 0 3rem 3rem;
+            gap: 2rem;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* LEFT PANEL - CHARACTER STATS */
+        .character-panel {
+            flex: 1;
+            min-width: 500px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .stats-card {
+            background: rgba(0, 0, 0, 0.85);
+            border: 4px solid var(--gta-green);
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 0 20px var(--gta-green);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gta-green), var(--gta-yellow), var(--gta-red));
+        }
+
+        .stats-title {
+            color: var(--gta-green);
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 0 10px var(--gta-green);
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .stats-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gta-green), transparent);
+        }
+
+        /* GTA STAT BARS */
+        .stat-item {
+            margin-bottom: 2rem;
+        }
+
+        .stat-label {
+            color: var(--gta-yellow);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-bar {
+            height: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--gta-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gta-green), var(--gta-yellow));
+            border-radius: 3px;
+            position: relative;
+            transition: width 1.5s ease-in-out;
+            box-shadow: 0 0 10px var(--gta-green);
+        }
+
+        .stat-value {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            color: var(--gta-black);
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0 0 2px var(--gta-white);
+        }
+
+        /* GTA INFO BOXES */
+        .gta-info-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid var(--gta-yellow);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .gta-info-box h4 {
+            color: var(--gta-red);
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 5px var(--gta-red);
+        }
+
+        .gta-info-box p {
+            color: var(--gta-white);
+            font-size: 1.3rem;
+            line-height: 1.5;
+        }
+
+        /* GTA BUTTON */
+        .gta-button {
+            display: block;
+            background: linear-gradient(135deg, var(--gta-yellow), var(--gta-red));
+            color: var(--gta-black);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid var(--gta-black);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+        }
+
+        .gta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.7);
+            letter-spacing: 2px;
+        }
+
+        /* RIGHT PANEL - MISSION BOARD */
+        .mission-panel {
+            flex: 1.5;
+            min-width: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mission-board {
+            background: rgba(0, 0, 0, 0.85);
+            border: 4px solid var(--gta-red);
+            border-radius: 10px;
+            padding: 2.5rem;
+            box-shadow: 0 0 20px var(--gta-red);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-board::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gta-red), var(--gta-yellow), var(--gta-green));
+        }
+
+        .mission-title {
+            color: var(--gta-red);
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 0 0 10px var(--gta-red);
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .mission-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gta-red), transparent);
+        }
+
+        /* GTA MISSION LIST */
+        .mission-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mission-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--gta-blue);
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+            transition: all 0.3s;
+            overflow: hidden;
+        }
+
+        .mission-item:hover {
+            transform: translateX(10px);
+            border-color: var(--gta-yellow);
+            box-shadow: 0 0 15px var(--gta-yellow);
+        }
+
+        .mission-item::before {
+            content: '📋';
+            position: absolute;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--gta-green);
+        }
+
+        .mission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .mission-name {
+            color: var(--gta-yellow);
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .mission-date {
+            color: var(--gta-green);
+            font-size: 1.3rem;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            border: 1px solid var(--gta-green);
+        }
+
+        .mission-desc {
+            color: var(--gta-white);
+            font-size: 1.3rem;
+            line-height: 1.5;
+        }
+
+        /* GTA WEAPON WHEEL */
+        .weapon-wheel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3rem 0;
+            height: 300px;
+            position: relative;
+        }
+
+        .wheel-center {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .weapon-core {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 30% 30%, var(--gta-red), transparent);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid var(--gta-yellow);
+            box-shadow: 0 0 40px var(--gta-red);
+            animation: weaponGlow 3s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            color: var(--gta-white);
+            z-index: 2;
+        }
+
+        @keyframes weaponGlow {
+            0% { 
+                box-shadow: 0 0 30px var(--gta-red);
+                border-color: var(--gta-yellow);
+            }
+            100% { 
+                box-shadow: 0 0 60px var(--gta-red), 0 0 90px var(--gta-green);
+                border-color: var(--gta-green);
+            }
+        }
+
+        .weapon-slot {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 2px solid var(--gta-blue);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            animation: gtaOrbit 20s linear infinite;
+            animation-delay: calc(var(--i) * -5s);
+            z-index: 1;
+        }
+
+        @keyframes gtaOrbit {
+            0% { 
+                transform: rotate(0deg) translateX(180px) rotate(0deg); 
+            }
+            100% { 
+                transform: rotate(360deg) translateX(180px) rotate(-360deg); 
+            }
+        }
+
+        /* GTA FOOTER */
+        .gta-footer {
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 3px solid var(--gta-yellow);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gta-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gta-red), var(--gta-yellow), var(--gta-green));
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .radio-stations {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .radio-station {
+            color: var(--gta-white);
+            font-size: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .radio-station:hover {
+            color: var(--gta-red);
+            transform: translateY(-5px);
+            text-shadow: 0 0 15px var(--gta-red);
+        }
+
+        .copyright {
+            color: #aaa;
+            font-size: 1.4rem;
+        }
+
+        .copyright span {
+            color: var(--gta-green);
+            font-weight: bold;
+        }
+
+        /* GTA MONEY DISPLAY */
+        .money-display {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--gta-yellow), #ff9900);
+            color: var(--gta-black);
+            padding: 15px 25px;
+            border-radius: 10px;
+            z-index: 1000;
+            font-weight: 900;
+            font-size: 1.8rem;
+            box-shadow: 0 0 20px var(--gta-yellow);
+            border: 3px solid var(--gta-black);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1400px) {
+            .gta-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .character-panel, .mission-panel {
+                min-width: 90%;
+                max-width: 1200px;
+            }
+            
+            .gta-title { font-size: 3.5rem; }
+            .gta-subtitle { font-size: 1.8rem; }
+        }
+
+        @media (max-width: 768px) {
+            .gta-container {
+                padding: 0 1.5rem 2rem;
+            }
+            
+            .gta-title { 
+                font-size: 2.5rem; 
+                letter-spacing: 2px;
+                padding: 0 1.5rem;
+            }
+            
+            .gta-subtitle { font-size: 1.3rem; }
+            
+            .stats-title, .mission-title { font-size: 2.2rem; }
+            
+            .stats-card, .mission-board {
+                padding: 2rem;
+            }
+            
+            .wheel-center {
+                transform: scale(0.7);
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .gta-radar, .money-display {
+                transform: scale(0.7);
+                transform-origin: top right;
+            }
+        }
+
+        /* GTA SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            border: 2px solid var(--gta-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--gta-red), var(--gta-yellow));
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--gta-red);
+        }
+
+        /* GTA NOTIFICATION */
+        .gta-notification {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 3px solid var(--gta-green);
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 1000;
+            font-size: 1.4rem;
+            max-width: 300px;
+            display: none;
+            animation: notificationSlide 0.5s ease-out;
+        }
+
+        @keyframes notificationSlide {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+    </style>
+    <link href="https://fonts.cdnfonts.com/css/pricedown" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- GTA STATIC EFFECT -->
+    <div class="gta-static"></div>
+    
+    <!-- GTA RADAR -->
+    <div class="gta-radar">
+        <div class="radar-center"></div>
+        <div class="radar-scan"></div>
+    </div>
+    
+    <!-- GTA WANTED LEVEL -->
+    <div class="wanted-level">
+        <div class="wanted-stars">
+            <span class="wanted-star">★</span>
+            <span class="wanted-star">★</span>
+            <span class="wanted-star">★</span>
+            <span class="wanted-star">★</span>
+            <span class="wanted-star">☆</span>
+        </div>
+        <div class="wanted-text">WANTED</div>
+    </div>
+    
+    <!-- GTA HEADER -->
+    <div class="gta-header">
+        <h1 class="gta-title">SREY SAMNANG</h1>
+        <div class="gta-subtitle">VIDEO EDITOR & DIGITAL CREATOR</div>
+        <div class="gta-divider"></div>
+    </div>
+    
+    <!-- GTA CONTAINER -->
+    <div class="gta-container">
+        <!-- LEFT PANEL - CHARACTER STATS -->
+        <div class="character-panel">
+            <div class="stats-card">
+                <h2 class="stats-title">CHARACTER STATS</h2>
+                
+                <!-- SKILL STATS -->
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span>Video Editing</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 95%"></div>
+                        <div class="stat-value">95%</div>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span>Graphic Design</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 88%"></div>
+                        <div class="stat-value">88%</div>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span>IT Support</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 85%"></div>
+                        <div class="stat-value">85%</div>
+                    </div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-label">
+                        <span>Social Media</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 90%"></div>
+                        <div class="stat-value">90%</div>
+                    </div>
+                </div>
+                
+                <!-- CHARACTER INFO -->
+                <div class="gta-info-box">
+                    <h4><i class="fas fa-user"></i> CHARACTER INFO</h4>
+                    <p><strong>Alias:</strong> SAMNANG</p>
+                    <p><strong>Specialization:</strong> Video Editing & Multimedia</p>
+                    <p><strong>Location:</strong> Phnom Penh, Cambodia</p>
+                    <p><strong>Status:</strong> Active - Available for missions</p>
+                </div>
+                
+                <div class="gta-info-box">
+                    <h4><i class="fas fa-graduation-cap"></i> TRAINING</h4>
+                    <p><strong>The University of Cambodia</strong> (2022-2026) - Information Technology</p>
+                    <p><strong>ICT Professional Training Center</strong> (2025) - Web Development Frontend</p>
+                    <p><strong>Sovanna Phumi School</strong> (2022-2024) - English Course</p>
+                </div>
+                
+                <!-- CONTACT INFO -->
+                <div class="gta-info-box">
+                    <h4><i class="fas fa-phone"></i> CONTACT</h4>
+                    <p><strong>Phone:</strong> 089 891 474</p>
+                    <p><strong>Email:</strong> samanngsrey0@gmail.com</p>
+                    <p><strong>Safe House:</strong> St.38 Phum Trea, Stoeng Mean Chey, Phnom Penh</p>
+                </div>
+                
+                <button class="gta-button" id="missionBtn">
+                    <i class="fas fa-briefcase"></i> HIRE FOR MISSION
+                </button>
+            </div>
+        </div>
+        
+        <!-- RIGHT PANEL - MISSION BOARD -->
+        <div class="mission-panel">
+            <div class="mission-board">
+                <h2 class="mission-title">MISSION BOARD</h2>
+                
+                <!-- MISSION LIST -->
+                <div class="mission-list">
+                    <div class="mission-item">
+                        <div class="mission-header">
+                            <div class="mission-name">KiuQ Company</div>
+                            <div class="mission-date current-mission">Dec 2025 - Present</div>
+                        </div>
+                        <div class="mission-desc">
+                            <strong>Video Editor & Multimedia Specialist</strong> - Currently engaged in video production, editing, and content creation for digital marketing campaigns. Mission status: ACTIVE.
+                        </div>
+                    </div>
+                    
+                    <div class="mission-item">
+                        <div class="mission-header">
+                            <div class="mission-name">ICT Professional Training Center</div>
+                            <div class="mission-date">May - Nov 2025</div>
+                        </div>
+                        <div class="mission-desc">
+                            <strong>Video Editor Internship</strong> - Completed intensive training in video editing, photo editing using Adobe Lightroom, and managing promotional content.
+                        </div>
+                    </div>
+                    
+                    <div class="mission-item">
+                        <div class="mission-header">
+                            <div class="mission-name">University of Cambodia</div>
+                            <div class="mission-date">Jan - July 2025</div>
+                        </div>
+                        <div class="mission-desc">
+                            <strong>Promotional Video Editor Intern</strong> - Created promotional videos and served as videographer for university events and marketing materials.
+                        </div>
+                    </div>
+                    
+                    <div class="mission-item">
+                        <div class="mission-header">
+                            <div class="mission-name">CamTESOL Conference</div>
+                            <div class="mission-date">Feb 23-25, 2024</div>
+                        </div>
+                        <div class="mission-desc">
+                            <strong>IT Support Volunteer</strong> - Provided technical support and assistance during the 19th Annual CamTESOL Conference on English Language Teaching.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- WEAPON WHEEL (SKILLS) -->
+                <div class="weapon-wheel">
+                    <div class="wheel-center">
+                        <div class="weapon-core">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="weapon-slot" style="--i: 0">
+                            <i class="fab fa-adobe" style="color: var(--gta-red); font-size: 1.8rem;"></i>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Premiere Pro</div>
+                        </div>
+                        <div class="weapon-slot" style="--i: 1">
+                            <i class="fas fa-cut" style="color: var(--gta-green); font-size: 1.8rem;"></i>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">CapCut</div>
+                        </div>
+                        <div class="weapon-slot" style="--i: 2">
+                            <i class="fab fa-adobe" style="color: var(--gta-blue); font-size: 1.8rem;"></i>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Photoshop</div>
+                        </div>
+                        <div class="weapon-slot" style="--i: 3">
+                            <i class="fab fa-figma" style="color: var(--gta-purple); font-size: 1.8rem;"></i>
+                            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Figma</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SOCIAL MEDIA MISSIONS -->
+                <div class="mission-item">
+                    <div class="mission-header">
+                        <div class="mission-name">Social Media Operations</div>
+                        <div class="mission-date">2022-2025</div>
+                    </div>
+                    <div class="mission-desc">
+                        <strong>Facebook, Telegram and TikTok Management</strong> - Mission objectives: Schedule posting times, create promotional videos and posters, manage video content distribution, and handle Facebook page communications.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- GTA MONEY DISPLAY -->
+    <div class="money-display">
+        <i class="fas fa-money-bill-wave"></i> $2,500,000
+    </div>
+    
+    <!-- GTA FOOTER -->
+    <div class="gta-footer">
+        <div class="footer-content">
+            <div class="radio-stations">
+                <a href="#" class="radio-station"><i class="fas fa-broadcast-tower"></i></a>
+                <a href="#" class="radio-station"><i class="fas fa-music"></i></a>
+                <a href="#" class="radio-station"><i class="fas fa-podcast"></i></a>
+                <a href="#" class="radio-station"><i class="fas fa-radio"></i></a>
+            </div>
+            <div class="copyright">
+                © 2025 <span>LOS SANTOS CUSTOMS</span> | SREY SAMNANG PORTFOLIO
+            </div>
+            <div class="contact-info">
+                <div style="color: var(--gta-green); font-size: 1.4rem;">
+                    <i class="fas fa-car"></i> Available for heists
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- GTA NOTIFICATION -->
+    <div class="gta-notification" id="notification">
+        Mission objective updated!
+    </div>
+
+    <script>
+        // CREATE GTA WORLD ELEMENTS
+        const gtaStatic = document.querySelector('.gta-static');
+        
+        // Create traffic on radar
+        for (let i = 0; i < 10; i++) {
+            const blip = document.createElement('div');
+            blip.style.position = 'absolute';
+            blip.style.width = '10px';
+            blip.style.height = '10px';
+            blip.style.backgroundColor = i % 2 === 0 ? 'var(--gta-green)' : 'var(--gta-red)';
+            blip.style.borderRadius = '50%';
+            blip.style.left = Math.random() * 100 + '%';
+            blip.style.top = Math.random() * 100 + '%';
+            blip.style.boxShadow = '0 0 10px currentColor';
+            blip.style.animation = `blipMove ${Math.random() * 10 + 5}s linear infinite`;
+            
+            document.querySelector('.gta-radar').appendChild(blip);
+            
+            const blipStyle = document.createElement('style');
+            blipStyle.textContent = `
+                @keyframes blipMove {
+                    0% { transform: translate(0, 0); }
+                    25% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
+                    50% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
+                    75% { transform: translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px); }
+                    100% { transform: translate(0, 0); }
+                }
+            `;
+            document.head.appendChild(blipStyle);
+        }
+        
+        // GTA MISSION BUTTON
+        const missionBtn = document.getElementById('missionBtn');
+        const notification = document.getElementById('notification');
+        
+        missionBtn.addEventListener('click', function() {
+            // Create GTA mission brief modal
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100vw';
+            modal.style.height = '100vh';
+            modal.style.background = 'rgba(0, 0, 0, 0.95)';
+            modal.style.display = 'flex';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '10000';
+            modal.style.backdropFilter = 'blur(5px)';
+            
+            modal.innerHTML = `
+                <div style="background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(42,42,42,0.95)); border: 4px solid var(--gta-yellow); border-radius: 15px; padding: 3rem; width: 90%; max-width: 700px; position: relative; box-shadow: 0 0 50px var(--gta-yellow);">
+                    <button id="closeModal" style="position: absolute; top: 1rem; right: 1rem; background: var(--gta-red); color: var(--gta-black); border: none; width: 50px; height: 50px; border-radius: 50%; font-size: 2rem; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px var(--gta-red); border: 3px solid var(--gta-black);">×</button>
+                    <h2 style="color: var(--gta-yellow); font-size: 3rem; margin-bottom: 2rem; text-align: center; text-shadow: 2px 2px 0 #000; letter-spacing: 2px;">MISSION BRIEFING</h2>
+                    
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: rgba(255,215,0,0.1); border: 2px solid var(--gta-yellow); border-radius: 10px;">
+                        <h3 style="color: var(--gta-red); font-size: 1.8rem; margin-bottom: 1rem;">📋 CLIENT REQUEST</h3>
+                        <p style="color: var(--gta-white); font-size: 1.4rem; line-height: 1.6;">
+                            A client needs a professional video editor for a multimedia project. Mission parameters include video production, editing, and content creation.
+                        </p>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 2rem;">
+                        <div>
+                            <h3 style="color: var(--gta-green); font-size: 1.6rem; margin-bottom: 1rem;">🎯 MISSION OBJECTIVES</h3>
+                            <ul style="color: var(--gta-white); font-size: 1.3rem; padding-left: 2rem; line-height: 1.8;">
+                                <li>Video editing and production</li>
+                                <li>Graphic design and multimedia creation</li>
+                                <li>Social media content management</li>
+                                <li>IT support and technical assistance</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 style="color: var(--gta-blue); font-size: 1.6rem; margin-bottom: 1rem;">💼 SUBMIT PROPOSAL</h3>
+                            <input type="text" placeholder="YOUR NAME" style="width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: 2px solid var(--gta-blue); border-radius: 8px; color: var(--gta-white); font-size: 1.3rem; text-transform: uppercase;">
+                            <input type="email" placeholder="EMAIL FOR BRIEFING" style="width: 100%; padding: 1.2rem; margin-bottom: 1rem; background: rgba(255,255,255,0.1); border: 2px solid var(--gta-blue); border-radius: 8px; color: var(--gta-white); font-size: 1.3rem;">
+                            <textarea placeholder="MISSION DETAILS / PROJECT REQUIREMENTS" rows="4" style="width: 100%; padding: 1.2rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.1); border: 2px solid var(--gta-blue); border-radius: 8px; color: var(--gta-white); font-size: 1.3rem;"></textarea>
+                            <button style="width: 100%; padding: 1.5rem; background: linear-gradient(135deg, var(--gta-green), var(--gta-blue)); color: var(--gta-black); border: none; border-radius: 8px; font-size: 1.6rem; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; border: 3px solid var(--gta-black);">ACCEPT MISSION</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Close modal functionality
+            document.getElementById('closeModal').addEventListener('click', function() {
+                document.body.removeChild(modal);
+                showNotification('Mission briefing closed');
+            });
+            
+            // Close when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                    showNotification('Mission briefing closed');
+                }
+            });
+            
+            // Mission acceptance
+            const acceptBtn = modal.querySelector('button[style*="linear-gradient"]');
+            acceptBtn.addEventListener('click', function() {
+                const name = modal.querySelector('input[type="text"]').value;
+                const email = modal.querySelector('input[type="email"]').value;
+                const message = modal.querySelector('textarea').value;
+                
+                if (name && email && message) {
+                    // Mission accepted effect
+                    this.innerHTML = '<i class="fas fa-check"></i> MISSION ACCEPTED!';
+                    this.style.background = 'linear-gradient(135deg, var(--gta-green), var(--gta-yellow))';
+                    
+                    // Update wanted stars
+                    const stars = document.querySelectorAll('.wanted-star');
+                    stars[4].innerHTML = '★';
+                    stars[4].style.color = 'var(--gta-red)';
+                    stars[4].style.textShadow = '0 0 10px var(--gta-red)';
+                    
+                    // Add money
+                    const moneyDisplay = document.querySelector('.money-display');
+                    const currentMoney = parseInt(moneyDisplay.textContent.replace(/\$|,/g, ''));
+                    const newMoney = currentMoney + 500000;
+                    moneyDisplay.innerHTML = `<i class="fas fa-money-bill-wave"></i> $${newMoney.toLocaleString()}`;
+                    
+                    // Show success notification
+                    showNotification('Mission accepted! +$500,000');
+                    
+                    setTimeout(() => {
+                        document.body.removeChild(modal);
+                        showNotification('Agent SAMNANG dispatched to location');
+                    }, 2000);
+                } else {
+                    this.innerHTML = '<i class="fas fa-exclamation-triangle"></i> COMPLETE ALL FIELDS!';
+                    this.style.background = 'linear-gradient(135deg, var(--gta-red), var(--gta-yellow))';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = 'ACCEPT MISSION';
+                        this.style.background = 'linear-gradient(135deg, var(--gta-green), var(--gta-blue))';
+                    }, 2000);
+                }
+            });
+        });
+        
+        // NOTIFICATION FUNCTION
+        function showNotification(message) {
+            notification.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // ANIMATE STAT BARS ON SCROLL
+        const statBars = document.querySelectorAll('.stat-fill');
+        
+        function animateStatBars() {
+            statBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        }
+        
+        // Animate when stats are in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStatBars();
+                    showNotification('Character stats loaded');
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const statsSection = document.querySelector('.stats-card');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+        
+        // MISSION ITEM INTERACTIONS
+        const missionItems = document.querySelectorAll('.mission-item');
+        
+        missionItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'var(--gta-yellow)';
+                this.style.boxShadow = '0 0 20px var(--gta-yellow)';
+                
+                // Add sound effect in console
+                console.log("🔊 GTA Mission select sound");
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--gta-blue)';
+                this.style.boxShadow = 'none';
+            });
+            
+            item.addEventListener('click', function() {
+                const missionName = this.querySelector('.mission-name').textContent;
+                showNotification(`Selected: ${missionName}`);
+            });
+        });
+        
+        // WEAPON WHEEL ANIMATION
+        const weaponSlots = document.querySelectorAll('.weapon-slot');
+        weaponSlots.forEach((slot, index) => {
+            slot.style.animationDelay = `${index * 5}s`;
+            
+            slot.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.2)';
+                this.style.borderColor = 'var(--gta-red)';
+                this.style.boxShadow = '0 0 20px var(--gta-red)';
+            });
+            
+            slot.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.borderColor = 'var(--gta-blue)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // RADIO STATION INTERACTIONS
+        const radioStations = document.querySelectorAll('.radio-station');
+        const radioNames = ['Los Santos Rock Radio', 'Radio Mirror Park', 'Worldwide FM', 'Blaine County Radio'];
+        
+        radioStations.forEach((station, index) => {
+            station.addEventListener('click', function(e) {
+                e.preventDefault();
+                showNotification(`Tuned to: ${radioNames[index]}`);
+                
+                // Change radar color based on station
+                const radar = document.querySelector('.gta-radar');
+                const colors = ['var(--gta-red)', 'var(--gta-green)', 'var(--gta-blue)', 'var(--gta-purple)'];
+                radar.style.borderColor = colors[index];
+                radar.style.boxShadow = `0 0 20px ${colors[index]}`;
+            });
+        });
+        
+        // WANTED STARS INTERACTION
+        const wantedStars = document.querySelectorAll('.wanted-star');
+        let wantedLevel = 4;
+        
+        wantedStars.forEach((star, index) => {
+            star.addEventListener('click', function() {
+                if (index === wantedLevel) {
+                    // Increase wanted level
+                    this.innerHTML = '★';
+                    this.style.color = 'var(--gta-red)';
+                    this.style.textShadow = '0 0 10px var(--gta-red)';
+                    
+                    if (wantedLevel < 4) {
+                        wantedLevel++;
+                    }
+                    
+                    showNotification(`Wanted level increased to ${wantedLevel + 1} stars!`);
+                } else if (index === wantedLevel - 1) {
+                    // Decrease wanted level
+                    this.innerHTML = '☆';
+                    this.style.color = 'var(--gta-yellow)';
+                    this.style.textShadow = '0 0 5px var(--gta-yellow)';
+                    
+                    if (wantedLevel > 0) {
+                        wantedLevel--;
+                    }
+                    
+                    showNotification(`Wanted level decreased to ${wantedLevel + 1} stars`);
+                }
+            });
+        });
+        
+        // MONEY ANIMATION
+        const moneyDisplay = document.querySelector('.money-display');
+        moneyDisplay.addEventListener('click', function() {
+            const currentMoney = parseInt(this.textContent.replace(/\$|,/g, ''));
+            const randomChange = Math.floor(Math.random() * 1000000) - 500000;
+            const newMoney = Math.max(0, currentMoney + randomChange);
+            
+            this.innerHTML = `<i class="fas fa-money-bill-wave"></i> $${newMoney.toLocaleString()}`;
+            
+            if (randomChange > 0) {
+                showNotification(`+$${randomChange.toLocaleString()} from side mission`);
+            } else {
+                showNotification(`-$${Math.abs(randomChange).toLocaleString()} medical bills`);
+            }
+        });
+        
+        // INITIALIZE GTA WORLD
+        window.addEventListener('load', function() {
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to Los Santos');
+            }, 1000);
+            
+            // Animate weapon wheel
+            weaponSlots.forEach((slot, index) => {
+                slot.style.animationDelay = `${index * 5}s`;
+            });
+            
+            // Console greeting
+            console.log("%c🚗 WELCOME TO LOS SANTOS", "color: #ffd700; font-size: 24px; font-weight: bold; text-shadow: 2px 2px 0 #000;");
+            console.log("%c💼 Srey Samnang - Video Editor for hire", "color: #00ff00; font-size: 16px;");
+            console.log("%c📞 Call 089-891-474 for missions", "color: #0099ff; font-size: 14px;");
+            
+            // Random police sirens in console (simulated)
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    console.log("🚨 WEEWOOWEEWOO - Police activity detected");
+                }
+            }, 10000);
+        });
+        
+        // KEYBOARD SHORTCUTS
+        document.addEventListener('keydown', function(e) {
+            switch(e.key) {
+                case 'm':
+                    showNotification('Map opened');
+                    break;
+                case 'p':
+                    const currentMoney = parseInt(moneyDisplay.textContent.replace(/\$|,/g, ''));
+                    moneyDisplay.innerHTML = `<i class="fas fa-money-bill-wave"></i> $${(currentMoney + 1000000).toLocaleString()}`;
+                    showNotification('+$1,000,000 - Heist completed');
+                    break;
+                case 'Escape':
+                    showNotification('Pause menu');
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
